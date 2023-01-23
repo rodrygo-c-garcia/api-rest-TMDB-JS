@@ -5,9 +5,9 @@ function navigator() {
   if (location.hash.startsWith("#trends")) {
     console.log("TRENDS");
   } else if (location.hash.startsWith("#search=")) {
-    console.log("SEARCH");
+    searchPage();
   } else if (location.hash.startsWith("#movie=")) {
-    console.log("movie");
+    movieDetailsPage();
   } else if (location.hash.startsWith("#category=")) {
     categoriesPage();
   } else {
@@ -56,4 +56,46 @@ function categoriesPage() {
   headerCategoryTitle.innerHTML = categoryName;
 
   // getMoviesByCategory(categoryId);
+}
+
+function movieDetailsPage() {
+  console.log("Movie!!");
+
+  headerSection.classList.add("header-container--long");
+  // headerSection.style.background = '';
+  arrowBtn.classList.remove("inactive");
+  arrowBtn.classList.add("header-arrow--white");
+  headerTitle.classList.add("inactive");
+  headerCategoryTitle.classList.add("inactive");
+  searchForm.classList.add("inactive");
+
+  trendingPreviewSection.classList.add("inactive");
+  categoriesPreviewSection.classList.add("inactive");
+  genericSection.classList.add("inactive");
+  movieDetailSection.classList.remove("inactive");
+
+  // ['#movie', '234567']
+  const [_, movieId] = location.hash.split("=");
+  //getMovieById(movieId);
+}
+
+function searchPage() {
+  console.log("Search!!");
+
+  headerSection.classList.remove("header-container--long");
+  headerSection.style.background = "";
+  arrowBtn.classList.remove("inactive");
+  arrowBtn.classList.remove("header-arrow--white");
+  headerTitle.classList.add("inactive");
+  headerCategoryTitle.classList.add("inactive");
+  searchForm.classList.remove("inactive");
+
+  trendingPreviewSection.classList.add("inactive");
+  categoriesPreviewSection.classList.add("inactive");
+  genericSection.classList.remove("inactive");
+  movieDetailSection.classList.add("inactive");
+
+  // ['#search', 'platzi']
+  const [_, query] = location.hash.split("=");
+  //getMoviesBySearch(query);
 }

@@ -1,4 +1,5 @@
-const API = axios.create({
+// creamos una instancia de AXIOS
+const api = axios.create({
   baseURL: "https://api.themoviedb.org/3",
   params: {
     api_key: API_KEY,
@@ -10,11 +11,9 @@ const API = axios.create({
 });
 
 async function getTrendingMoviesPreview() {
-  const res = await fetch(
-    "https://api.themoviedb.org/3/trending/movie/day?api_key=" + API_KEY
-  );
-  const data = await res.json();
+  const { data } = await api("/trending/movie/day");
   const movies = data.results;
+
   movies.forEach((movie) => {
     const trendingPreview = document.querySelector(
       "#trendingPreview .trendingPreview-movieList"

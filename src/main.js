@@ -33,7 +33,28 @@ function createMovies(movies, container) {
   });
 }
 
-// API
+function createCategories(genres, container) {
+  container.innerHTML = "";
+  genres.forEach((genre) => {
+    // creamos el container
+    const genre_container = document.createElement("div");
+    genre_container.classList.add("category-container");
+
+    // creamos
+    const genre_label = document.createElement("h3");
+    genre_label.classList.add("category-title");
+    genre_label.textContent = genre.name;
+    genre_label.setAttribute("id", "id" + genre.id);
+    genre_label.addEventListener("click", () => {
+      location.hash = "#category=" + genre.id + "-" + genre.name;
+    });
+
+    genre_container.appendChild(genre_label);
+    container.appendChild(genre_container);
+  });
+}
+
+// Obtenemos todas las movies en tendencia
 async function getTrendingMoviesPreview() {
   const { data } = await api("/trending/movie/day");
   const movies = data.results;
@@ -47,14 +68,10 @@ async function getTrendingMoviesPreview() {
 }
 
 async function getCategoryMoviesPreview() {
-  const categoriesPreviewList = document.querySelector(
-    "#categoriesPreview .categoriesPreview-list"
-  );
-  categoriesPreviewList.innerHTML = "";
-
   const { data } = await api("/genre/movie/list");
   const genres = data.genres;
 
+  categoriesPreviewList.innerHTML = "";
   genres.forEach((genre) => {
     // creamos el container
     const genre_container = document.createElement("div");
@@ -72,10 +89,14 @@ async function getCategoryMoviesPreview() {
     genre_container.appendChild(genre_label);
     categoriesPreviewList.appendChild(genre_container);
   });
+
   console.log(genres);
 }
 
+// obtenemos la categoria especificada por el ID
 async function getMoviesByCategory(id) {
+  window.scrollTo(0, 0);
+
   const { data } = await api("/discover/movie", {
     params: {
       with_genres: id,

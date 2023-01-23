@@ -6,6 +6,10 @@ trendingBtn.addEventListener("click", () => {
   location.hash = "#trends=";
 });
 
+arrowBtn.addEventListener("click", () => {
+  location.hash = "#";
+});
+
 window.addEventListener("DOMContentLoaded", navigator, false);
 window.addEventListener("hashchange", navigator, false);
 

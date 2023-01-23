@@ -14,6 +14,4 @@ function navigator() {
   } else {
     console.log("Home");
   }
-
-  location.hash;
 }

@@ -14,11 +14,10 @@ async function getTrendingMoviesPreview() {
   const { data } = await api("/trending/movie/day");
   const movies = data.results;
 
+  const trendingPreview = document.querySelector(
+    "#trendingPreview .trendingPreview-movieList"
+  );
   movies.forEach((movie) => {
-    const trendingPreview = document.querySelector(
-      "#trendingPreview .trendingPreview-movieList"
-    );
-
     // creamos el container para la imagen
     const movie_container = document.createElement("div");
     movie_container.classList.add("movie-container");
@@ -35,6 +34,7 @@ async function getTrendingMoviesPreview() {
     movie_container.appendChild(movie_img);
     trendingPreview.appendChild(movie_container);
   });
+
   console.log(data);
   console.log(movies);
 }
@@ -44,10 +44,7 @@ async function getCategoryMoviesPreview() {
     "#categoriesPreview .categoriesPreview-list"
   );
 
-  const res = await fetch(
-    "https://api.themoviedb.org/3/genre/movie/list?api_key=" + API_KEY
-  );
-  const data = await res.json();
+  const { data } = await api("/genre/movie/list");
   const genres = data.genres;
 
   genres.forEach((genre) => {

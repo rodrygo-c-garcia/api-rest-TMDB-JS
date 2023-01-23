@@ -1,0 +1,19 @@
+{
+  "name": "api-rest-tmdb-js",
+  "version": "1.0.0",
+  "description": "Consumo de API-REST de Peliculas con JS",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodrygo-c-garcia/api-rest-TMDB-JS.git"
+  },
+  "author": "colqueariel023@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rodrygo-c-garcia/api-rest-TMDB-JS/issues"
+  },
+  "homepage": "https://github.com/rodrygo-c-garcia/api-rest-TMDB-JS#readme"
+}

@@ -71,24 +71,7 @@ async function getCategoryMoviesPreview() {
   const { data } = await api("/genre/movie/list");
   const genres = data.genres;
 
-  categoriesPreviewList.innerHTML = "";
-  genres.forEach((genre) => {
-    // creamos el container
-    const genre_container = document.createElement("div");
-    genre_container.classList.add("category-container");
-
-    // creamos
-    const genre_label = document.createElement("h3");
-    genre_label.classList.add("category-title");
-    genre_label.textContent = genre.name;
-    genre_label.setAttribute("id", "id" + genre.id);
-    genre_label.addEventListener("click", () => {
-      location.hash = "#category=" + genre.id + "-" + genre.name;
-    });
-
-    genre_container.appendChild(genre_label);
-    categoriesPreviewList.appendChild(genre_container);
-  });
+  createCategories(genres, categoriesPreviewList);
 
   console.log(genres);
 }

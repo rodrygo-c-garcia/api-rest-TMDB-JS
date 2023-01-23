@@ -67,7 +67,7 @@ function categoriesPage() {
 
   headerCategoryTitle.innerHTML = categoryName;
 
-  // getMoviesByCategory(categoryId);
+  getMoviesByCategory(categoryId);
 }
 
 function movieDetailsPage() {

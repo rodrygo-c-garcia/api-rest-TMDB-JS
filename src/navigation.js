@@ -3,7 +3,7 @@ window.addEventListener("hashchange", navigator, false);
 
 function navigator() {
   if (location.hash.startsWith("#trends")) {
-    console.log("TRENDS");
+    trendsPage();
   } else if (location.hash.startsWith("#search=")) {
     searchPage();
   } else if (location.hash.startsWith("#movie=")) {
@@ -98,4 +98,25 @@ function searchPage() {
   // ['#search', 'platzi']
   const [_, query] = location.hash.split("=");
   //getMoviesBySearch(query);
+}
+
+function trendsPage() {
+  console.log("TRENDS!!");
+
+  headerSection.classList.remove("header-container--long");
+  headerSection.style.background = "";
+  arrowBtn.classList.remove("inactive");
+  arrowBtn.classList.remove("header-arrow--white");
+  headerTitle.classList.add("inactive");
+  headerCategoryTitle.classList.remove("inactive");
+  searchForm.classList.add("inactive");
+
+  trendingPreviewSection.classList.add("inactive");
+  categoriesPreviewSection.classList.add("inactive");
+  genericSection.classList.remove("inactive");
+  movieDetailSection.classList.add("inactive");
+
+  headerCategoryTitle.innerHTML = "Tendencias";
+
+  //getTrendingMovies();
 }

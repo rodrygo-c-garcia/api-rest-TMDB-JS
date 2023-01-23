@@ -83,24 +83,7 @@ async function getMoviesByCategory(id) {
   });
   const movies = data.results;
 
-  genericSection.innerHTML = "";
-  movies.forEach((movie) => {
-    // creamos el container para la imagen
-    const movie_container = document.createElement("div");
-    movie_container.classList.add("movie-container");
-
-    // creamos la imagen
-    const movie_img = document.createElement("img");
-    movie_img.classList.add("movie-img");
-    movie_img.setAttribute("alt", movie.title);
-    movie_img.setAttribute(
-      "src",
-      "https://image.tmdb.org/t/p/w300" + movie.poster_path
-    );
-
-    movie_container.appendChild(movie_img);
-    genericSection.appendChild(movie_container);
-  });
+  createMovies(movies, genericSection);
 
   console.log(data);
   console.log(movies);

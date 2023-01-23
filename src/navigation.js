@@ -2,6 +2,10 @@ searchFormBtn.addEventListener("click", () => {
   location.hash = "#search=";
 });
 
+trendingBtn.addEventListener("click", () => {
+  location.hash = "#trends=";
+});
+
 window.addEventListener("DOMContentLoaded", navigator, false);
 window.addEventListener("hashchange", navigator, false);
 

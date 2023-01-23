@@ -15,3 +15,21 @@ function navigator() {
     console.log("Home");
   }
 }
+
+function homePage() {
+  getTrendingMoviesPreview();
+  getCategoryMoviesPreview();
+
+  headerSection.classList.remove("header-container--long");
+  headerSection.style.background = "";
+  arrowBtn.classList.add("inactive");
+  arrowBtn.classList.remove("header-arrow--white");
+  headerTitle.classList.remove("inactive");
+  headerCategoryTitle.classList.add("inactive");
+  searchForm.classList.remove("inactive");
+
+  trendingPreviewSection.classList.remove("inactive");
+  categoriesPreviewSection.classList.remove("inactive");
+  genericSection.classList.add("inactive");
+  movieDetailSection.classList.add("inactive");
+}

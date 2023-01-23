@@ -1,3 +1,7 @@
+searchFormBtn.addEventListener("click", () => {
+  location.hash = "#search=";
+});
+
 window.addEventListener("DOMContentLoaded", navigator, false);
 window.addEventListener("hashchange", navigator, false);
 

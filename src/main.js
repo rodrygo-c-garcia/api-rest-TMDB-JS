@@ -1,3 +1,14 @@
+const API = axios.create({
+  baseURL: "https://api.themoviedb.org/3",
+  params: {
+    api_key: API_KEY,
+  },
+  Headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+});
+
 async function getTrendingMoviesPreview() {
   const res = await fetch(
     "https://api.themoviedb.org/3/trending/movie/day?api_key=" + API_KEY

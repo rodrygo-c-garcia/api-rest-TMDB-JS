@@ -17,6 +17,7 @@ async function getTrendingMoviesPreview() {
   const rendingMoviesPreviewList = document.querySelector(
     "#trendingPreview .trendingPreview-movieList"
   );
+  rendingMoviesPreviewList.innerHTML = "";
   movies.forEach((movie) => {
     // creamos el container para la imagen
     const movie_container = document.createElement("div");
@@ -43,6 +44,7 @@ async function getCategoryMoviesPreview() {
   const categoriesPreviewList = document.querySelector(
     "#categoriesPreview .categoriesPreview-list"
   );
+  categoriesPreviewList.innerHTML = "";
 
   const { data } = await api("/genre/movie/list");
   const genres = data.genres;

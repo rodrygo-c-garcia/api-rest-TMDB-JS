@@ -3,7 +3,7 @@ searchFormBtn.addEventListener("click", () => {
 });
 
 trendingBtn.addEventListener("click", () => {
-  location.hash = "#trends=";
+  location.hash = "#trends";
 });
 
 arrowBtn.addEventListener("click", () => {

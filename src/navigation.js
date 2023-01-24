@@ -1,5 +1,5 @@
 searchFormBtn.addEventListener("click", () => {
-  location.hash = "#search=";
+  location.hash = "#search=" + searchFormInput.value;
 });
 
 trendingBtn.addEventListener("click", () => {
@@ -30,6 +30,7 @@ function navigator() {
 function homePage() {
   getTrendingMoviesPreview();
   getCategoryMoviesPreview();
+  searchFormInput.value = "";
 
   headerSection.classList.remove("header-container--long");
   headerSection.style.background = "";
@@ -109,7 +110,7 @@ function searchPage() {
 
   // ['#search', 'platzi']
   const [_, query] = location.hash.split("=");
-  //getMoviesBySearch(query);
+  getMoviesBySearch(query);
 }
 
 function trendsPage() {

@@ -20,6 +20,10 @@ function createMovies(movies, container) {
     const movie_container = document.createElement("div");
     movie_container.classList.add("movie-container");
 
+    movie_container.addEventListener("click", () => {
+      location.hash = "#movie=" + movie.id;
+    });
+
     const movie_img = document.createElement("img");
     movie_img.classList.add("movie-img");
     movie_img.setAttribute("alt", movie.title);
@@ -31,6 +35,8 @@ function createMovies(movies, container) {
     movie_container.appendChild(movie_img);
     container.appendChild(movie_container);
   });
+
+  console.log(movies);
 }
 
 function createCategories(genres, container) {
@@ -111,11 +117,18 @@ async function getTrendingMovies() {
   const { data } = await api("/trending/movie/day");
   const movies = data.results;
 
-  const rendingMoviesPreviewList = document.querySelector(
-    "#trendingPreview .trendingPreview-movieList"
-  );
   createMovies(movies, genericSection);
 
   console.log(data);
   console.log(movies);
+}
+async function getMovieById(id) {
+  // renombramos data a movie
+  const { data: movie } = await api("/movie/" + id);
+
+  movieDetailTitle.textContent = movie.title;
+  movieDetailDescription.textContent = movie.overview;
+  movieDetailScore.textContent = movie.vote_average;
+
+  console.log(movie);
 }

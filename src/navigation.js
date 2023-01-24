@@ -6,8 +6,10 @@ trendingBtn.addEventListener("click", () => {
   location.hash = "#trends";
 });
 
+// Boton de hacia atras
 arrowBtn.addEventListener("click", () => {
-  location.hash = "#";
+  history.back();
+  //location.hash = "#";
 });
 
 window.addEventListener("DOMContentLoaded", navigator, false);
@@ -131,5 +133,5 @@ function trendsPage() {
 
   headerCategoryTitle.innerHTML = "Tendencias";
 
-  //getTrendingMovies();
+  getTrendingMovies();
 }

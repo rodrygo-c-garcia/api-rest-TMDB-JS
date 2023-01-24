@@ -106,3 +106,16 @@ async function getMoviesBySearch(query) {
   console.log(data);
   console.log(movies);
 }
+
+async function getTrendingMovies() {
+  const { data } = await api("/trending/movie/day");
+  const movies = data.results;
+
+  const rendingMoviesPreviewList = document.querySelector(
+    "#trendingPreview .trendingPreview-movieList"
+  );
+  createMovies(movies, genericSection);
+
+  console.log(data);
+  console.log(movies);
+}

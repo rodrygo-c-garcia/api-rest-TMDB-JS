@@ -42,7 +42,13 @@ function createMovies(movies, container, lazyLoad = false) {
       lazyLoad ? "data-img" : "src",
       "https://image.tmdb.org/t/p/w300" + movie.poster_path
     );
-
+    // imagen por defecto cuando la API no responde con una Foto
+    movie_img.addEventListener("error", () => {
+      movie_img.setAttribute(
+        "src",
+        "https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+      );
+    });
     // el observador estar vigilando a nuestro imagen
     if (lazyLoad) lazyLoader.observe(movie_img);
 

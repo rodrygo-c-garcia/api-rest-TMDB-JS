@@ -89,6 +89,9 @@ async function getTrendingMoviesPreview() {
   const { data } = await api("/trending/movie/day");
   const movies = data.results;
 
+  console.log("Total " + data.total_pages);
+  maxPage = data.total_pages;
+
   const rendingMoviesPreviewList = document.querySelector(
     "#trendingPreview .trendingPreview-movieList"
   );
@@ -154,7 +157,9 @@ async function paginationTrendingMovies() {
   const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
   const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
-  if (scrollIsBottom) {
+  const isNotMaxPage = pagina < maxPage;
+
+  if (scrollIsBottom && isNotMaxPage) {
     pagina++;
 
     const { data } = await api("/trending/movie/day", {
@@ -195,5 +200,9 @@ async function getRelatedMoviesId(id) {
   const { data } = await api(`/movie/${id}/recommendations`);
   const relatedMovies = data.results;
   console.log(relatedMovies);
-  createMovies(relatedMovies, relatedMoviesContainer);
+
+  createMovies(relatedMovies, relatedMoviesContainer, {
+    lazyLoad: true,
+    clean: false,
+  });
 }

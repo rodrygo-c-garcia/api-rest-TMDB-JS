@@ -136,8 +136,8 @@ async function getMoviesBySearch(query) {
 
   createMovies(movies, genericSection);
 
-  console.log(data);
-  console.log(movies);
+  // console.log(data);
+  // console.log(movies);
 }
 
 // las tendencias
@@ -159,6 +159,7 @@ async function paginationTrendingMovies() {
   const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
   const isNotMaxPage = pagina < maxPage;
 
+  // validamos el Scroll
   if (scrollIsBottom && isNotMaxPage) {
     pagina++;
 
@@ -205,4 +206,29 @@ async function getRelatedMoviesId(id) {
     lazyLoad: true,
     clean: false,
   });
+}
+
+async function paginationMovieSearch(query) {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+  const isNotMaxPage = pagina < maxPage;
+
+  // validamos el Scroll
+  if (scrollIsBottom && isNotMaxPage) {
+    pagina++;
+
+    const { data } = await api("/search/movie", {
+      params: {
+        query: query,
+        page: pagina,
+      },
+    });
+    const movies = data.results;
+
+    createMovies(movies, genericSection, {
+      lazyLoad: true,
+      clean: false,
+    });
+  }
 }

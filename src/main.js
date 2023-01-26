@@ -11,9 +11,20 @@ const api = axios.create({
   },
 });
 
+// Lazy Loader, vamos a observar todo el HTML
+
+const lazyLoader = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const url = entry.target.getAttribute("data-img");
+      entry.target.setAttribute("src", url);
+    }
+  });
+});
+
 // Utils
 
-function createMovies(movies, container) {
+function createMovies(movies, container, lazyLoad = false) {
   container.innerHTML = "";
 
   movies.forEach((movie) => {
@@ -28,9 +39,12 @@ function createMovies(movies, container) {
     movie_img.classList.add("movie-img");
     movie_img.setAttribute("alt", movie.title);
     movie_img.setAttribute(
-      "src",
+      lazyLoad ? "data-img" : "src",
       "https://image.tmdb.org/t/p/w300" + movie.poster_path
     );
+
+    // el observador estar vigilando a nuestro imagen
+    if (lazyLoad) lazyLoader.observe(movie_img);
 
     movie_container.appendChild(movie_img);
     container.appendChild(movie_container);
@@ -68,7 +82,7 @@ async function getTrendingMoviesPreview() {
   const rendingMoviesPreviewList = document.querySelector(
     "#trendingPreview .trendingPreview-movieList"
   );
-  createMovies(movies, rendingMoviesPreviewList);
+  createMovies(movies, rendingMoviesPreviewList, true);
   console.log(data);
   console.log(movies);
 }

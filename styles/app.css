@@ -449,3 +449,14 @@ footer {
 }
 
 /* Animation */
+@keyframes loading-skeleton {
+
+  0%,
+  100% {
+    opacity: 100%;
+  }
+
+  50% {
+    opacity: 0%;
+  }
+}

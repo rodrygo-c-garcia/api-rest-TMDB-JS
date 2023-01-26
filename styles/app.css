@@ -94,6 +94,24 @@ button {
 
 
 /* Shared */
+
+.movie-container {
+  cursor: pointer;
+}
+
+.movie-container--loading {
+  background: var(--purple-light-2);
+  border-radius: 8px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+
 .header-container,
 .trendingPreview-header,
 .categoriesPreview-container {
@@ -127,6 +145,7 @@ footer {
   position: relative;
   flex-wrap: wrap;
 }
+
 
 
 /* Header */
@@ -428,3 +447,5 @@ footer {
 .inactive {
   display: none;
 }
+
+/* Animation */

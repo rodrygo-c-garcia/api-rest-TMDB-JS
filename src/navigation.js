@@ -85,6 +85,7 @@ function categoriesPage() {
   headerCategoryTitle.innerHTML = categoryName;
 
   getMoviesByCategory(categoryId);
+  infinityScroll = paginationTrendingMovies;
 }
 
 function movieDetailsPage() {

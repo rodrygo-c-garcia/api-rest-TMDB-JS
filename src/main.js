@@ -24,8 +24,12 @@ const lazyLoader = new IntersectionObserver((entries) => {
 
 // Utils
 
-function createMovies(movies, container, lazyLoad = false) {
-  container.innerHTML = "";
+function createMovies(
+  movies,
+  container,
+  { lazyLoad = false, clean = true } = {}
+) {
+  if (clean) container.innerHTML = "";
 
   movies.forEach((movie) => {
     const movie_container = document.createElement("div");
@@ -133,15 +137,38 @@ async function getMoviesBySearch(query) {
   console.log(movies);
 }
 
+// las tendencias
 async function getTrendingMovies() {
   const { data } = await api("/trending/movie/day");
   const movies = data.results;
 
-  createMovies(movies, genericSection);
+  createMovies(movies, genericSection, { lazyLoad: true, clean: true });
 
-  console.log(data);
-  console.log(movies);
+  const btnLoad = document.createElement("button");
+  btnLoad.innerText = "Cargar Mas";
+  btnLoad.addEventListener("click", paginationTrendingMovies);
+  genericSection.appendChild(btnLoad);
 }
+
+let pagina = 1;
+
+async function paginationTrendingMovies() {
+  pagina++;
+  const { data } = await api("/trending/movie/day", {
+    params: {
+      page: pagina,
+    },
+  });
+  const movies = data.results;
+
+  createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+
+  const btnLoad = document.createElement("button");
+  btnLoad.innerText = "Cargar Mas";
+  btnLoad.addEventListener("click", paginationTrendingMovies);
+  genericSection.appendChild(btnLoad);
+}
+
 async function getMovieById(id) {
   // renombramos data a movie
   const { data: movie } = await api("/movie/" + id);

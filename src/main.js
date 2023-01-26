@@ -144,29 +144,32 @@ async function getTrendingMovies() {
 
   createMovies(movies, genericSection, { lazyLoad: true, clean: true });
 
-  const btnLoad = document.createElement("button");
-  btnLoad.innerText = "Cargar Mas";
-  btnLoad.addEventListener("click", paginationTrendingMovies);
-  genericSection.appendChild(btnLoad);
+  // const btnLoad = document.createElement("button");
+  // btnLoad.innerText = "Cargar Mas";
+  // btnLoad.addEventListener("click", paginationTrendingMovies);
+  // genericSection.appendChild(btnLoad);
 }
 
-let pagina = 1;
-
 async function paginationTrendingMovies() {
-  pagina++;
-  const { data } = await api("/trending/movie/day", {
-    params: {
-      page: pagina,
-    },
-  });
-  const movies = data.results;
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
-  createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+  const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+  if (scrollIsBottom) {
+    pagina++;
 
-  const btnLoad = document.createElement("button");
-  btnLoad.innerText = "Cargar Mas";
-  btnLoad.addEventListener("click", paginationTrendingMovies);
-  genericSection.appendChild(btnLoad);
+    const { data } = await api("/trending/movie/day", {
+      params: {
+        page: pagina,
+      },
+    });
+    const movies = data.results;
+    createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+  }
+
+  // const btnLoad = document.createElement("button");
+  // btnLoad.innerText = "Cargar Mas";
+  // btnLoad.addEventListener("click", paginationTrendingMovies);
+  // genericSection.appendChild(btnLoad);
 }
 
 async function getMovieById(id) {

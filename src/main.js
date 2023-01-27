@@ -133,7 +133,7 @@ async function getMoviesBySearch(query) {
     },
   });
   const movies = data.results;
-
+  maxPage = data.total_pages;
   createMovies(movies, genericSection);
 
   // console.log(data);
@@ -194,7 +194,7 @@ async function getMovieById(id) {
 
   createCategories(movie.genres, movieDetailCategoriesList, true);
   getRelatedMoviesId(id);
-  console.log(id);
+  //console.log(id);
 }
 
 async function getRelatedMoviesId(id) {
@@ -209,26 +209,29 @@ async function getRelatedMoviesId(id) {
 }
 
 async function paginationMovieSearch(query) {
-  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  //closure
+  return async function () {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
-  const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
-  const isNotMaxPage = pagina < maxPage;
+    const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+    const isNotMaxPage = pagina < maxPage;
 
-  // validamos el Scroll
-  if (scrollIsBottom && isNotMaxPage) {
-    pagina++;
+    // validamos el Scroll
+    if (scrollIsBottom && isNotMaxPage) {
+      pagina++;
 
-    const { data } = await api("/search/movie", {
-      params: {
-        query: query,
-        page: pagina,
-      },
-    });
-    const movies = data.results;
+      const { data } = await api("/search/movie", {
+        params: {
+          query: query,
+          page: pagina,
+        },
+      });
+      const movies = data.results;
 
-    createMovies(movies, genericSection, {
-      lazyLoad: true,
-      clean: false,
-    });
-  }
+      createMovies(movies, genericSection, {
+        lazyLoad: true,
+        clean: false,
+      });
+    }
+  };
 }

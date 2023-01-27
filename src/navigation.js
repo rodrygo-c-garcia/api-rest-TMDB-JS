@@ -129,6 +129,8 @@ function searchPage() {
   // ['#search', 'platzi']
   const [_, query] = location.hash.split("=");
   getMoviesBySearch(query);
+
+  infinityScroll = paginationMovieSearch(query);
 }
 
 function trendsPage() {

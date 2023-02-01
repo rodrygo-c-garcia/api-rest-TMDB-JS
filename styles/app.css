@@ -170,6 +170,13 @@ footer {
 
 .movie-btn {
   position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  padding: 0;
+  margin: 0;
 }
 
 .categoriesPreview-list,

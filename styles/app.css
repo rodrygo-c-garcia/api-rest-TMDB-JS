@@ -160,11 +160,16 @@ footer {
 
 .movie-container {
   cursor: pointer;
+  position: relative;
 }
 
 .movie-img {
   border-radius: 8px;
   min-height: 175px;
+}
+
+.movie-btn {
+  position: absolute;
 }
 
 .categoriesPreview-list,

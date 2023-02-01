@@ -47,6 +47,7 @@ function navigator() {
 function homePage() {
   getTrendingMoviesPreview();
   getCategoryMoviesPreview();
+  getLikedMovies();
   searchFormInput.value = "";
 
   headerSection.classList.remove("header-container--long");

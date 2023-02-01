@@ -141,7 +141,8 @@ button {
 
 .header-container,
 .trendingPreview-header,
-.categoriesPreview-container {
+.categoriesPreview-container,
+.liked-container {
   padding: 0 24px;
 }
 

@@ -11,6 +11,28 @@ const api = axios.create({
   },
 });
 
+function likedMovieList() {
+  const item = JSON.parse(localStorage.getItem("liked_movies"));
+  let movies = "";
+
+  if (item) movies = item;
+  else movies = {};
+
+  return movies;
+}
+
+function likeMovie(movie) {
+  const liked_movies = likedMovieList();
+
+  if (liked_movies[movie.id]) {
+    liked_movies[movie.id] = undefined;
+  } else {
+    liked_movies[movie.id] = movie;
+  }
+
+  localStorage.setItem("liked_movies", JSON.stringify(liked_movies));
+}
+
 // Lazy Loader, vamos a observar todo el HTML
 
 const lazyLoader = new IntersectionObserver((entries) => {
@@ -35,10 +57,6 @@ function createMovies(
     const movie_container = document.createElement("div");
     movie_container.classList.add("movie-container");
 
-    movie_container.addEventListener("click", () => {
-      location.hash = "#movie=" + movie.id;
-    });
-
     const movie_img = document.createElement("img");
     movie_img.classList.add("movie-img");
     movie_img.setAttribute("alt", movie.title);
@@ -46,6 +64,9 @@ function createMovies(
       lazyLoad ? "data-img" : "src",
       "https://image.tmdb.org/t/p/w300" + movie.poster_path
     );
+    movie_img.addEventListener("click", () => {
+      location.hash = "#movie=" + movie.id;
+    });
     // imagen por defecto cuando la API no responde con una Foto
     movie_img.addEventListener("error", () => {
       movie_img.setAttribute(
@@ -60,6 +81,7 @@ function createMovies(
     movieBtn.addEventListener("click", () => {
       movieBtn.classList.toggle("movie-btn--liked");
       // Agregar las peliculas
+      likeMovie(movie);
     });
 
     // el observador estar vigilando a nuestro imagen

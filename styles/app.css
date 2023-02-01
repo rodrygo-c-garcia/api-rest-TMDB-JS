@@ -179,6 +179,11 @@ footer {
   margin: 0;
 }
 
+.movie-btn::before {
+  content: '💚';
+  font-size: 15px;
+}
+
 .categoriesPreview-list,
 .categories-list {
   display: flex;

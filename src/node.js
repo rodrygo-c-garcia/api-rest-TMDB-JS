@@ -18,6 +18,8 @@ const relatedMoviesContainer = document.querySelector(
   ".relatedMovies-scrollContainer"
 );
 
+const likeMovieList = document.querySelector(".liked-movieList");
+
 // Elements
 const headerTitle = document.querySelector(".header-title");
 const arrowBtn = document.querySelector(".header-arrow");

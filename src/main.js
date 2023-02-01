@@ -267,3 +267,14 @@ async function paginationMovieSearch(query) {
     }
   };
 }
+
+function getLikedMovies() {
+  // obtenmos la lista de peliculas favoritas en forma de obtjetos
+  const list_movie_like = likedMovieList();
+
+  // convertimos el objeto a array
+  const movie_array = Object.values(list_movie_like);
+
+  createMovies(movie_array, likeMovieList, { lazyLoad: true, clean: true });
+  console.log(list_movie_like);
+}

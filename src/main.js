@@ -53,10 +53,20 @@ function createMovies(
         "https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
       );
     });
+
+    // para peliculas favoritas
+    const movieBtn = document.createElement("button");
+    movieBtn.classList.add("movie-btn");
+    movieBtn.addEventListener("click", () => {
+      movieBtn.classList.toggle("movie-btn--liked");
+      // Agregar las peliculas
+    });
+
     // el observador estar vigilando a nuestro imagen
     if (lazyLoad) lazyLoader.observe(movie_img);
 
     movie_container.appendChild(movie_img);
+    movie_container.appendChild(movieBtn);
     container.appendChild(movie_container);
   });
 

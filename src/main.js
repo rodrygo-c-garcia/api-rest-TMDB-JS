@@ -78,6 +78,12 @@ function createMovies(
     // para peliculas favoritas
     const movieBtn = document.createElement("button");
     movieBtn.classList.add("movie-btn");
+
+    // verificamos si la pelicula ya esta en localStorage
+    if (likedMovieList()[movie.id]) {
+      movieBtn.classList.add("movie-btn--liked");
+    }
+
     movieBtn.addEventListener("click", () => {
       movieBtn.classList.toggle("movie-btn--liked");
       // Agregar las peliculas

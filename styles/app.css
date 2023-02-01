@@ -184,6 +184,16 @@ footer {
   font-size: 15px;
 }
 
+.movie-btn--liked {
+  background-color: var(--purple-light-2);
+  box-shadow: 0 0 10 2 var(--purple-dark-2);
+}
+
+.movie-btn--liked::before {
+  content: '💜';
+  font-size: 15px;
+}
+
 .categoriesPreview-list,
 .categories-list {
   display: flex;
